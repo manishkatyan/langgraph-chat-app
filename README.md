@@ -126,32 +126,32 @@ MIT License
 
 ## BM25 (Okapi BM25)
 
-A probabilistic ranking function that uses term frequency-inverse document frequency (TF-IDF) with length normalization.
-Unlike basic TF-IDF, BM25 incorporates document length normalization and has tunable parameters (k1 and b) to control term frequency saturation and document length normalization.
+- A sophisticated keyword matching algorithm that improves upon traditional word-frequency matching. Think of it as "Ctrl+F" on steroids.
+- It's smart enough to understand that if a word appears 10 times in a short document, it's probably more relevant than if it appears 10 times in a very long document. It also prevents common words from dominating the results.
 
 ## Vector Similarity Search
 
-Documents and queries are converted to dense vector embeddings (typically 768-1536 dimensions) using language models like OpenAI's text-embedding-ada-002.
-Similarity is computed using cosine similarity or dot product between query and document vectors, enabling semantic matching beyond exact keyword matches.
+- Converts words and sentences into numerical representations (vectors) where similar meanings are close to each other in mathematical space.
+- For example, "automobile" and "car" would be close together in this space, allowing the system to find relevant content even when exact keywords don't match.
 
 ## Maximal Marginal Relevance (MMR)
 
-An algorithm that balances relevance with diversity by selecting documents that maximize marginal relevance.
-Uses the formula: MMR = λ sim(Di,Q) - (1-λ) max(sim(Di,Dj)) where λ balances between relevance to query and diversity from already selected documents.
+- Ensures search results aren't repetitive by balancing relevance with diversity.
+- If you have 10 very similar documents that match a query, MMR will pick the best one and then look for other relevant but different perspectives, rather than showing you the same information 10 times.
 
 ## Contextual Compression Components:
 
 ### Cohere Re-ranking
 
-A cross-encoder model that directly compares query-document pairs to compute relevance scores.
-More computationally expensive but more accurate than bi-encoders, as it can capture complex query-document interactions.
+- A specialized model that takes the initial search results and re-orders them by actually reading and understanding both the query and the content.
+- Similar to having a human assistant who reads through search results and puts the most relevant ones at the top, but automated.
 
 ### Top-N Filtering
 
-A post-processing step that selects the N most relevant documents after re-ranking.
-Helps maintain a manageable context window for the LLM while ensuring only the most pertinent information is included.
+- Takes the re-ranked results and keeps only the most relevant ones (typically the top 5).
+- This is like having an executive summary instead of a full report, ensuring the AI only works with the most important information.
 
 ### Citation Preservation
 
-A metadata tracking system that maintains document source information (filename, page numbers) throughout the retrieval pipeline.
-Enables the system to generate inline citations [1], [2], etc., and provide source attribution for all retrieved information.
+- Keeps track of where each piece of information came from in your documents, including file names and page numbers.
+- Works like a reference manager in a Word document, automatically maintaining source information and allowing for proper attribution in responses.
