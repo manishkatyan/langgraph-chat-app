@@ -62,13 +62,13 @@ The system implements a sophisticated multi-stage retrieval pipeline:
 
 ### Directory Structure
 
-├── company_pdfs/ # Place your company PDFs here
-├── chroma_db/ # Persistent vector store
-├── tools/
-│ ├── company_search.py
-│ ├── flight_search.py
-│ └── tavily_search.py
-└── chat.py # Main application
+├── company_pdfs/ # Place your company PDFs here \n
+├── chroma_db/ # Persistent vector store \n
+├── tools/ \n
+│ ├── company_search.py \n
+│ ├── flight_search.py \n
+│ └── tavily_search.py \n
+└── chat.py # Main application \n
 
 ## 🚀 Usage
 
