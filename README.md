@@ -2,6 +2,12 @@
 
 A sophisticated chat application that combines multiple AI agents for flight search, news retrieval, and company financial document analysis. Built with LangGraph, Streamlit, and leveraging advanced RAG (Retrieval Augmented Generation) techniques.
 
+## Architecture
+
+<img src="https://media.licdn.com/dms/image/v2/D5612AQFSnpkgQ5jh-g/article-cover_image-shrink_720_1280/B56ZVw.VB2HoAI-/0/1741357143114?e=1746662400&v=beta&t=TbIbCYjeqy87XF8LDad2-jhN6tCIcaNexyzZ4q1o_y8" alt="Alt text" width="800" height="600">
+
+
+
 ## 🌟 Key Features
 
 ### 1. Multi-Agent System
