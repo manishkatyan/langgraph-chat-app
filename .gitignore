@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+.venv/
+
+# Project specific
+chroma_db/
+company_pdfs/
+
+# Poetry
+poetry.lock
+
+.DS_Store
