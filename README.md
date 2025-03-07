@@ -122,6 +122,70 @@ The system implements a sophisticated multi-stage retrieval pipeline:
 
 MIT License
 
+# Key LangGraph Concepts
+
+## Nodes
+
+- Nodes are individual processing units in the application flow, similar to functions in a workflow.
+- Each node (like company_search_node, flight_search_node) handles a specific task and maintains its own state.
+- Example: The company search node processes financial document queries while the flight search node handles travel requests.
+
+## Tools
+
+- Tools are specialized classes that wrap external APIs or services, making them easily usable within nodes.
+- Each tool (CompanySearchTool, FlightSearchTool, TavilySearchTool) follows a standard interface with invoke() and \_run() methods.
+
+```
+class FlightSearchTool(BaseTool):
+    name: str = "flight_search"
+    def _run(self, input_str: str) -> str:
+        # Process flight search logic
+```
+
+## Multiple Nodes and State Management
+
+- The application uses multiple nodes that work together, each handling different types of queries.
+- State is passed between nodes using a dictionary structure that includes:
+  - Messages: Chat history and responses
+  - Sources: Retrieved document references
+  - Other metadata needed across nodes
+
+```
+return {
+    "messages": past_messages + [new_message],
+    "sources": current_sources,
+}
+```
+
+## Routing
+
+- The application uses conditional routing to direct queries to appropriate nodes based on content.
+- Routing decisions are made using:
+  - Message content analysis
+  - User intent detection
+  - Tool availability
+
+```
+def should_use_company_search(state):
+    # Route to company search if query is about financial data
+    return "financial" in state.query.lower()
+```
+
+## Message Flow
+
+- User input → Router
+- Router → Appropriate Tool/Node
+- Node processes request
+- Response formatted with citations
+- State updated and returned to user
+
+This architecture allows for:
+
+- Modular addition of new capabilities
+- Clear separation of concerns
+- Maintainable state management
+- Flexible routing based on user needs
+
 # Ensemble Retrieval Components:
 
 ## BM25 (Okapi BM25)
