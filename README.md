@@ -4,7 +4,7 @@ A sophisticated chat application that combines multiple AI agents for flight sea
 
 ## Architecture
 
-<img src="https://media.licdn.com/dms/image/v2/D5612AQGWQxiRuMl7Sw/article-cover_image-shrink_720_1280/B56ZVw77QZGUAI-/0/1741356513191?e=1746662400&v=beta&t=hMqvjDkVMB8Pf3CBJVX9ZU17mYzaeNVrfeNVyDKl65I" alt="Alt text" width="800" height="600">
+<img src="https://media.licdn.com/dms/image/v2/D5612AQFSnpkgQ5jh-g/article-cover_image-shrink_720_1280/B56ZVw.VB2HoAI-/0/1741357143114?e=1746662400&v=beta&t=TbIbCYjeqy87XF8LDad2-jhN6tCIcaNexyzZ4q1o_y8" alt="Alt text" width="800" height="600">
 
 
 
