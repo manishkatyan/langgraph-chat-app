@@ -11,6 +11,7 @@ from langchain_community.retrievers import BM25Retriever
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_cohere import CohereRerank
+from core import tracer
 
 class CompanyVectorStore:
 
@@ -96,6 +97,7 @@ class CompanyVectorStore:
         )
         return compression_retriever
 
+    @tracer.tool(name="company_search")
     def retrieve(self, query: str):
         return self.retriever.invoke(query)
     

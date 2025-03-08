@@ -18,6 +18,8 @@ from langchain_core.callbacks.base import BaseCallbackHandler
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import HumanMessage, AIMessage
 from tools import TavilySearchTool, FlightSearchTool, CompanyVectorStore, CompanySearchTool
+from core import tracer
+
 
 # Initialize CompanyVectorStore and CompanySearchTool globally
 search_tool = TavilySearchTool(max_results=1, include_answer=True) # include_raw_content=True
@@ -55,6 +57,7 @@ def format_context_with_citations(docs):
             context += f"[{idx + 1}] (File: {source}, Page: {page})\n{doc.page_content}\n\n"
         return context
 
+@tracer.agent(name="company_search_node")
 def company_search_node(state: State):
     past_messages = state.get("messages", [])
     current_sources = state.get("sources", [])
@@ -134,6 +137,7 @@ def format_response_for_logging(response):
         "sources": response.get("sources", [])
     }
 
+@tracer.chain(name="is_rakuten_query")
 def is_rakuten_query(messages):
     # Get the last message content, handling both dict and Message objects
     last_message = messages[-1]
@@ -145,6 +149,7 @@ def is_rakuten_query(messages):
     
     return "rakuten" in content.lower()
 
+@tracer.chain(name="router")
 def router(state):
     if tools_condition(state) == "tools":
         return "tools"
@@ -152,6 +157,7 @@ def router(state):
         return "company_search"
     return "end"
 
+@tracer.agent(name="chatbot")
 def chatbot(state: State):
     past_messages = state.get("messages", [])
     current_sources = state.get("sources", [])

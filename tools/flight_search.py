@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from typing import Optional
 from langchain_core.runnables.config import RunnableConfig
 from langchain.tools import BaseTool
+from core import tracer
 
 class FlightSearchTool(BaseTool):
     name: str = "flight_search"
@@ -54,6 +55,7 @@ class FlightSearchTool(BaseTool):
         future_date = datetime.now() + timedelta(days=7)
         return future_date.strftime('%Y-%m-%d')
 
+    @tracer.tool(name="flight_search")
     def _run(self, input_str: str, config: Optional[RunnableConfig] = None) -> str:
         try:
             print(f"\n***[LOG] Flight search input: {input_str}\n***")
