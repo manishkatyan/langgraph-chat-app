@@ -47,7 +47,7 @@ class CompanyVectorStore:
                 collection_name=self.collection_name,
                 persist_directory=self.persist_directory,
             )
-            vectorstore.persist()
+            #vectorstore.persist()
             print("[LOG] Chroma DB created and persisted.")
             return vectorstore
     
