@@ -3,7 +3,7 @@
 A sophisticated chat application that combines multiple AI agents for flight search, news retrieval, and company financial document analysis. Built with LangGraph, Streamlit, and leveraging advanced RAG (Retrieval Augmented Generation) techniques.
 
 ## Demo
-<a href="https://github.com/manishkatyan/langgraph-chat-app" target="_blank">Click here</a> for the demo
+<a href="[https://github.com/manishkatyan/langgraph-chat-app](https://langgraph-chat.streamlit.app/)" target="_blank">Click here</a> for the demo
 
 ## Architecture
 
